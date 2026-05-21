@@ -35,6 +35,39 @@ public class Funcionario {
         this.departamento = departamento;
     }
 
+
+    /**
+     * Calcula o valor do bônus anual do funcionário.
+     *
+     * @param anosDeEmpresa    tempo de empresa calculado externamente
+     * @param notaDeAvaliacao  nota de desempenho de 0.0 a 10.0
+     * @return                 valor do bônus em reais
+     */
+
+    public double calcularBonus(int anosDeEmpresa, double notaDeAvaliacao) {
+
+        // Guard clause 1: avaliação insuficiente bloqueia tudo
+        if (notaDeAvaliacao < 7.0) {
+            return 0;
+        }
+
+        // Guard clause 2: tempo mínimo não atingido
+        if (anosDeEmpresa < 1) {
+            return 0;
+        }
+
+        double salarioAnual = salarioMensal * 12;
+
+        // Faixa intermediária: 1 a 3 anos
+        if (anosDeEmpresa >= 1 && anosDeEmpresa <= 3) {
+            return salarioAnual * 0.05;
+        }
+
+        // Faixa sênior: mais de 3 anos
+        return salarioAnual * 0.10;
+    }
+
+
         // Retorna uma descrição legível do funcionario
         // Útil para logs e depuração
 

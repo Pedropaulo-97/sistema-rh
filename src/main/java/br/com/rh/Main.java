@@ -2,8 +2,7 @@ package br.com.rh;
 
 import br.com.rh.model.Funcionario;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
     public static void main(String[] args) {
 
@@ -16,6 +15,10 @@ public class Main {
                 "17/05/2026",
                 "Tecnologia"
         );
+
+        double bonus = joao.calcularBonus(3, 8.5);
+
         System.out.println(joao);
+        System.out.println("Bônus anual: R$ " + bonus);
     }
 }
