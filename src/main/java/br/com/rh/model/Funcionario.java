@@ -3,28 +3,30 @@ package br.com.rh.model;
 public class Funcionario {
 
 
-        // Dados de indentificação
+    // Dados de indentificação
     private String nomeCompleto;
     private String cpf;
 
-        // Dados contratuais
+    // Dados contratuais
     private double salarioMensal;
     private int quantidadeDependentes;
     private boolean ativoNaEmpresa;
     private String dataDeAdmissao;
     private String departamento;
+    private double notaDeAvaliacao;
 
 
-        // Cria um novo funcionario com dados obrigatórios
+    // Cria um novo funcionario com dados obrigatórios
 
-    public Funcionario (
+    public Funcionario(
             String nomeCompleto,
             String cpf,
             double salarioMensal,
             int quantidadeDependentes,
             boolean ativoNaEmpresa,
             String dataDeAdmissao,
-            String departamento
+            String departamento,
+            double notaDeAvaliacao
     ) {
         this.nomeCompleto = nomeCompleto;
         this.cpf = cpf;
@@ -33,18 +35,24 @@ public class Funcionario {
         this.ativoNaEmpresa = ativoNaEmpresa;
         this.dataDeAdmissao = dataDeAdmissao;
         this.departamento = departamento;
+        this.notaDeAvaliacao = notaDeAvaliacao;
     }
 
 
     /**
      * Calcula o valor do bônus anual do funcionário.
+     * <p>
+     * Regras:
+     * - Avaliação abaixo de 7.0 → sem bônus
+     * - Menos de 1 ano de empresa → sem bônus
+     * - Entre 1 e 3 anos → 5% do salário anual
+     * - Acima de 3 anos → 10% do salário anual
      *
-     * @param anosDeEmpresa    tempo de empresa calculado externamente
-     * @param notaDeAvaliacao  nota de desempenho de 0.0 a 10.0
-     * @return                 valor do bônus em reais
+     * @param anosDeEmpresa tempo de empresa calculado externamente
+     * @return valor do bônus em reais
      */
 
-    public double calcularBonus(int anosDeEmpresa, double notaDeAvaliacao) {
+    public double calcularBonus(int anosDeEmpresa) {
 
         // Guard clause 1: avaliação insuficiente bloqueia tudo
         if (notaDeAvaliacao < 7.0) {
@@ -68,8 +76,8 @@ public class Funcionario {
     }
 
 
-        // Retorna uma descrição legível do funcionario
-        // Útil para logs e depuração
+    // Retorna uma descrição legível do funcionario
+    // Útil para logs e depuração
 
     @Override
     public String toString() {
@@ -79,6 +87,7 @@ public class Funcionario {
                 ", salario=" + salarioMensal +
                 ", departamento='" + departamento + '\'' +
                 ", ativo=" + ativoNaEmpresa +
+                ", nota=" + notaDeAvaliacao +
                 '}';
     }
 }
