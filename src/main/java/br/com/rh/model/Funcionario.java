@@ -28,6 +28,19 @@ public class Funcionario {
             String departamento,
             double notaDeAvaliacao
     ) {
+
+        if (salarioMensal <= 0) {
+            throw new IllegalArgumentException("Salário deve ser maior que zero");
+        }
+
+        if (notaDeAvaliacao < 0 || notaDeAvaliacao > 10) {
+            throw new IllegalArgumentException("Nota deve ser entre 0 e 10");
+        }
+
+        if (nomeCompleto == null || nomeCompleto.isEmpty()) {
+            throw new IllegalArgumentException("Nome não pode ser vazio");
+        }
+
         this.nomeCompleto = nomeCompleto;
         this.cpf = cpf;
         this.salarioMensal = salarioMensal;
