@@ -6,6 +6,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+
+    public static Funcionario encontrarMaiorSalario(List<Funcionario> funcionarios) {
+
+        Funcionario maior = funcionarios.get(0);
+
+        for (Funcionario funcionario : funcionarios) {
+            if (funcionario.getSalarioMensal() > maior.getSalarioMensal()) {
+                maior = funcionario;
+            }
+        }
+        return maior;
+    }
+
+    public static double calcularTotalFolha(List<Funcionario> funcionarios) {
+        double total = 0.0;
+
+        for  (Funcionario funcionario : funcionarios) {
+            total = total + funcionario.getSalarioMensal();
+        }
+        return total;
+    }
+
     public static void main(String[] args) {
 
         List<Funcionario> funcionarios = new ArrayList<>();
@@ -47,5 +69,11 @@ public class Main {
             System.out.println(funcionario);
             System.out.println("Bônus anual: R$ " + funcionario.calcularBonus(2));
         }
+
+        Funcionario maisRico = encontrarMaiorSalario(funcionarios);
+        System.out.println("Maior salário: " + maisRico);
+
+        double totalFolha = calcularTotalFolha(funcionarios);
+        System.out.println("Total da folha: R$ " + totalFolha);
     }
 }

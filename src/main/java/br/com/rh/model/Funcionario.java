@@ -3,11 +3,10 @@ package br.com.rh.model;
 public class Funcionario {
 
 
-    // Dados de indentificação
     private String nomeCompleto;
     private String cpf;
 
-    // Dados contratuais
+
     private double salarioMensal;
     private int quantidadeDependentes;
     private boolean ativoNaEmpresa;
@@ -15,8 +14,6 @@ public class Funcionario {
     private String departamento;
     private double notaDeAvaliacao;
 
-
-    // Cria um novo funcionario com dados obrigatórios
 
     public Funcionario(
             String nomeCompleto,
@@ -67,30 +64,33 @@ public class Funcionario {
 
     public double calcularBonus(int anosDeEmpresa) {
 
-        // Guard clause 1: avaliação insuficiente bloqueia tudo
+
         if (notaDeAvaliacao < 7.0) {
             return 0;
         }
 
-        // Guard clause 2: tempo mínimo não atingido
+
         if (anosDeEmpresa < 1) {
             return 0;
         }
 
         double salarioAnual = salarioMensal * 12;
 
-        // Faixa intermediária: 1 a 3 anos
+
         if (anosDeEmpresa >= 1 && anosDeEmpresa <= 3) {
             return salarioAnual * 0.05;
         }
 
-        // Faixa sênior: mais de 3 anos
+
         return salarioAnual * 0.10;
     }
 
 
-    // Retorna uma descrição legível do funcionario
-    // Útil para logs e depuração
+    public double getSalarioMensal() {
+        return salarioMensal;
+    }
+
+
 
     @Override
     public String toString() {
