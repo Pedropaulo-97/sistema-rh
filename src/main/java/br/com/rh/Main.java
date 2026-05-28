@@ -22,10 +22,19 @@ public class Main {
     public static double calcularTotalFolha(List<Funcionario> funcionarios) {
         double total = 0.0;
 
-        for  (Funcionario funcionario : funcionarios) {
+        for (Funcionario funcionario : funcionarios) {
             total = total + funcionario.getSalarioMensal();
         }
         return total;
+    }
+
+    public static List<Funcionario> filtrarPorDepartamento(List<Funcionario> funcionarios, String departamento) {
+        List<Funcionario> listaDepartamento = new ArrayList<>();
+        for (Funcionario funcionario : funcionarios) {
+            if (funcionario.getDepartamento().equals(departamento))
+                listaDepartamento.add(funcionario);
+        }
+        return listaDepartamento;
     }
 
     public static void main(String[] args) {
@@ -75,5 +84,8 @@ public class Main {
 
         double totalFolha = calcularTotalFolha(funcionarios);
         System.out.println("Total da folha: R$ " + totalFolha);
+
+        List<Funcionario> tecnologia = filtrarPorDepartamento(funcionarios, "Tecnologia");
+        System.out.println("Funcionários de Tecnologia: " + tecnologia);
     }
 }

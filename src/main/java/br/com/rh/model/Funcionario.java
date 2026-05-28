@@ -90,6 +90,9 @@ public class Funcionario {
         return salarioMensal;
     }
 
+    public String getDepartamento() {
+        return departamento;
+    }
 
 
     @Override
